@@ -16,7 +16,7 @@ jupyter nbextension enable --user --py nbgrader
 jupyter serverextension enable --user --py nbgrader
 ```
 
-Create the assignment as normal by creating a notebook and through using the nbgrader plugin. Remember to lock the cells you don't want students to change by marking them as read-only. Mark every cell that students write in as an "Autograded answer" and give those cells a recognizable ID. check50 can then look for these IDs.
+Create the assignment as you normally would by creating a new notebook. While writing the assignment, remember to lock the cells you don't want students to change by marking them as read-only. Mark every cell that students write in as an "Autograded answer" and give those cells a recognizable ID. check50 can then look for these IDs.
 
 You can make use of the nbgrader feature to hide solutions by surrounding them with `### BEGIN SOLUTION` and `### END SOLUTION`. Just remember to run the command below to generate the student version without the solutions:
 
