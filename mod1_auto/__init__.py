@@ -30,22 +30,23 @@ def get_test_ids(notebook_path):
 
     return test_cells
 
+
+def create_check(test_id):
+    def check():
+        check_jupyter = check50.internal.import_file("check_jupyter", "check_jupyter.py")
+        cells = check_jupyter.cells_up_to("module 1.ipynb", test_id)
+        check_jupyter.execute(cells)
+
+    check.__name__ = test_id
+    check.__doc__ = f"Test: {test_id} passes"
+    return check
+
+
 def init():
     # Keep track of dependencies
     last_check = exists
 
     for test_id in get_test_ids("module 1.ipynb"):
-        def create_check(test_id):
-            def check():
-                check_jupyter = check50.internal.import_file("check_jupyter", "check_jupyter.py")
-                cells = check_jupyter.cells_up_to("module 1.ipynb", test_id)
-                check_jupyter.execute(cells)
-
-            check.__name__ = test_id
-            check.__doc__ = f"Test: {test_id} passes"
-            return check
-
-        # Create a new check
         check = create_check(test_id)
 
         # Register the check with check50
