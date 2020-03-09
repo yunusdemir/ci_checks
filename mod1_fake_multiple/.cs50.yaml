@@ -1,7 +1,0 @@
-check50:
-  dependencies:
-    - "jupyter"
-    - "pandas"
-  files:
-    - !exclude "*"
-    - !require "module 1.ipynb"
