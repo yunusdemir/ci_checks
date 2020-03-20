@@ -1364,7 +1364,7 @@ def test_17(df_ratings, df_tags, df_ratings_solution, df_tags_solution):
          [1, 50, 5.0, 964982931, Timestamp('2000-07-30 20:48:51', tz="CET")]],
         columns=['userId', 'movieId', 'rating', 'timestamp', 'datetime'],
         index=[0, 1, 2, 3, 4])
-    pd.testing.assert_frame_equal(df_ratings.head(), partial_solution)
+    pd.testing.assert_frame_equal(df_ratings.head(), partial_solution, check_dtype=False)
 
     partial_solution = DataFrame(
         [[2, 60756, 'funny', 1445714994, Timestamp('2015-10-24 21:29:54', tz="CET")],
@@ -1377,7 +1377,7 @@ def test_17(df_ratings, df_tags, df_ratings_solution, df_tags_solution):
          [2, 89774, 'MMA', 1445715200, Timestamp('2015-10-24 21:33:20', tz="CET")]],
         columns=['userId', 'movieId', 'tag', 'timestamp', 'datetime'],
         index=[0, 1, 2, 3, 4])
-    pd.testing.assert_frame_equal(df_tags.head(), partial_solution)
+    pd.testing.assert_frame_equal(df_tags.head(), partial_solution, check_dtype=False)
 
     df_ratings_solution['datetime'] = df_ratings_solution['timestamp'].map(
         datetime.fromtimestamp)
@@ -1476,7 +1476,7 @@ def test_21(df_ratings, mean, median):
                               index=[1, 2, 3, 4, 5]).astype("float64")
     pd.testing.assert_series_equal(
         median(df_ratings, "movieId", "rating").head(), partial_solution,
-        check_names=False)
+        check_names=False, check_dtype=False)
 
     print("success!")
 
