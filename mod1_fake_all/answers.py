@@ -6,6 +6,7 @@ from numpy import nan
 
 
 def test_1(income):
+    """Income is an series"""
     print("Testing dtype of answer: ", end='')
     assert type(income) is Series, "Income moet een series zijn"
     print('success!')
