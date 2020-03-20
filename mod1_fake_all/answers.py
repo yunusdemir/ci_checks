@@ -1364,8 +1364,7 @@ def test_17(df_ratings, df_tags, df_ratings_solution, df_tags_solution):
          [1, 50, 5.0, 964982931, Timestamp('2000-07-30 20:48:51')]],
         columns=['userId', 'movieId', 'rating', 'timestamp', 'datetime'],
         index=[0, 1, 2, 3, 4])
-    pd.testing.assert_frame_equal(df_ratings.head(),
-                                  partial_solution)
+    pd.testing.assert_frame_equal(df_ratings.head(), partial_solution)
 
     partial_solution = DataFrame(
         [[2, 60756, 'funny', 1445714994, Timestamp('2015-10-24 21:29:54')],
@@ -1378,8 +1377,7 @@ def test_17(df_ratings, df_tags, df_ratings_solution, df_tags_solution):
          [2, 89774, 'MMA', 1445715200, Timestamp('2015-10-24 21:33:20')]],
         columns=['userId', 'movieId', 'tag', 'timestamp', 'datetime'],
         index=[0, 1, 2, 3, 4])
-    pd.testing.assert_frame_equal(df_tags.head(),
-                                  partial_solution)
+    pd.testing.assert_frame_equal(df_tags.head(), partial_solution)
 
     df_ratings_solution['datetime'] = df_ratings_solution['timestamp'].map(
         datetime.fromtimestamp)
@@ -1497,8 +1495,6 @@ def test_22(df_ratings_filtered, df_ratings_solution):
                  'datetime'], index=[0, 1, 2, 3, 4])
 
     pd.testing.assert_frame_equal(df_ratings_filtered.head(), partial_solution)
-
-    # TODO same here!
 
     df_ratings_filtered_solution = df_ratings_solution.groupby(
         "movieId").filter(lambda group: len(group) >= 10)
