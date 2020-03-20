@@ -1476,7 +1476,7 @@ def test_21(df_ratings, mean, median):
                               index=[1, 2, 3, 4, 5]).astype("float64")
     pd.testing.assert_series_equal(
         median(df_ratings, "movieId", "rating").head(), partial_solution,
-        check_names=False, check_dtype=False)
+        check_names=False)
 
     print("success!")
 
@@ -1494,7 +1494,8 @@ def test_22(df_ratings_filtered, df_ratings_solution):
         columns=['userId', 'movieId', 'rating', 'timestamp',
                  'datetime'], index=[0, 1, 2, 3, 4])
 
-    pd.testing.assert_frame_equal(df_ratings_filtered.head(), partial_solution)
+    pd.testing.assert_frame_equal(df_ratings_filtered.head(), 
+                                  partial_solution, check_dtype=False)
 
     df_ratings_filtered_solution = df_ratings_solution.groupby(
         "movieId").filter(lambda group: len(group) >= 10)
