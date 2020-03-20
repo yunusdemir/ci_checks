@@ -31,7 +31,7 @@ def get_test_ids(notebook_path):
 @check50.check()
 def exists():
     """Notebook exists"""
-    check50.include("check_jupyter.py", "data")
+    check50.include("check_jupyter.py", "data", "answers.py")
 
     # Grab the last test
     test_ids = get_test_ids(NOTEBOOK_PATH)
