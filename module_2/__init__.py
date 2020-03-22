@@ -5,6 +5,7 @@ import nbformat
 
 NOTEBOOK_PATH = "module 2.ipynb"
 
+
 # TODO: move this into check_jupyter.py
 def get_test_ids(notebook_path):
     """
@@ -31,14 +32,16 @@ def get_test_ids(notebook_path):
 @check50.check()
 def exists():
     """Notebook exists"""
-    check50.include("check_jupyter.py", "mini-movielens", "micro-movielens", "answers.py")
+    check50.include("check_jupyter.py", "mini-movielens", "micro-movielens",
+                    "answers.py")
 
     # Grab the last test
     test_ids = get_test_ids(NOTEBOOK_PATH)
     last_test_id = test_ids[-1]
 
     # Grab all cells up to the last test cell
-    check_jupyter = check50.internal.import_file("check_jupyter", "check_jupyter.py")
+    check_jupyter = check50.internal.import_file("check_jupyter",
+                                                 "check_jupyter.py")
     cells = check_jupyter.cells_up_to(NOTEBOOK_PATH, last_test_id)
 
     # Gather all results
@@ -57,8 +60,8 @@ def exists():
 
             # If it's a test cell, record result
             if check_jupyter.is_test_cell(cell):
-                results.append((check_jupyter.get_cell_id(cell), passed, exception))
-
+                results.append(
+                    (check_jupyter.get_cell_id(cell), passed, exception))
 
     # Pass down the results to the actual checks
     return tuple(results)
@@ -71,6 +74,7 @@ def create_check(test_id):
     Results is a tuple with the following structure:
         ((test_id, passed, exception), (test_id, passed, exception), ...)
     """
+
     def check(results):
         for id, passed, exception in results:
             if id == test_id and not passed:
@@ -91,5 +95,6 @@ def init():
 
         # Add the check to global module scope
         globals()[test_id] = check
+
 
 init()
