@@ -4,5 +4,5 @@ check50:
     - "pandas"
   files:
     - !exclude "*"
-    - !require "Module 3.ipynb"
+    - !require " module 3.ipynb"
     - !require "data/"
