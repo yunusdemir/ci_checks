@@ -32,14 +32,17 @@ def get_test_ids(notebook_path):
 @check50.check()
 def exists():
     """Notebook exists"""
-    check50.include("check_jupyter.py", "mini-movielens/", "micro-movielens/",
-                    "answers.py")
+    check50.include("check_jupyter.py")
 
     # Grab the last test
     test_ids = get_test_ids(NOTEBOOK_PATH)
     last_test_id = test_ids[-1]
 
     # Grab all cells up to the last test cell
+    check50.internal.import_file("mini-movielens/", "mini-movielens/*")
+    check50.internal.import_file("micro-movielens/", "micro-movielens/*")
+    check50.internal.import_file("answers.py", "answers.py")
+
     check_jupyter = check50.internal.import_file("check_jupyter",
                                                  "check_jupyter.py")
     cells = check_jupyter.cells_up_to(NOTEBOOK_PATH, last_test_id)

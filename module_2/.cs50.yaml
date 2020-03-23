@@ -5,6 +5,3 @@ check50:
   files:
     - !exclude "*"
     - !require "module 2.ipynb"
-    - !require "answers.py"
-    - !require "mini-movielens/"
-    - !require "micro-movielens/"
